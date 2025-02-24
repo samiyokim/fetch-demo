@@ -1,3 +1,5 @@
+import { SortingState } from '@tanstack/react-table';
+
 export interface SearchParams {
   breeds?: string[];
   zipCodes?: string[];
@@ -15,4 +17,16 @@ export interface Dog {
   age: number;
   zip_code: string;
   breed: string;
+}
+
+export interface TableProps {
+  data: Dog[];
+  sorting: SortingState;
+  onSortingChange: (sorting: SortingState) => void;
+  totalPages: number;
+  onLoadMore: () => Promise<void>;
+  isLoadingMore: boolean;
+  selectedBreed: string;
+  favorites: Set<string>;
+  onToggleFavorite: (dogId: string) => void;
 }
