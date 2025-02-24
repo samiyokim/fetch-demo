@@ -1,8 +1,9 @@
 import React from 'react';
 import { Table } from '@tanstack/react-table';
+import { Dog } from '../types/dog';
 
 interface TablePaginationProps {
-  table: Table<any>;
+  table: Table<Dog>;
   totalPages: number;
   isLoadingMore: boolean;
   onLoadMore: () => Promise<void>;

@@ -27,8 +27,8 @@ const View: React.FC = () => {
       try {
         const response = await api.get('/dogs/breeds');
         setAllBreeds(response.data);
-      } catch (error: any) {
-        if (error.response?.status === 401) {
+      } catch (error: unknown) {
+        if (error?.response?.status === 401) {
           navigate('/signin');
         }
       } finally {
@@ -53,7 +53,11 @@ const View: React.FC = () => {
   const handleToggleFavorite = (dogId: string) => {
     setFavorites(prev => {
       const newFavorites = new Set(prev);
-      newFavorites.has(dogId) ? newFavorites.delete(dogId) : newFavorites.add(dogId);
+      if (newFavorites.has(dogId)) {
+        newFavorites.delete(dogId)
+      } else {
+        newFavorites.add(dogId)
+      }
       return newFavorites;
     });
   };

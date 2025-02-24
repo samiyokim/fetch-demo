@@ -1,4 +1,4 @@
-import React, { startTransition, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import * as RadixSelect from '@radix-ui/react-select';
 import { matchSorter } from "match-sorter";
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@radix-ui/react-icons';

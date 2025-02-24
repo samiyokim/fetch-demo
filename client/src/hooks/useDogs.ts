@@ -40,8 +40,8 @@ export const useDogs = () => {
       } else {
         setDogs([]);
       }
-    } catch (error: any) {
-      if (error.response?.status === 401) {
+    } catch (error: unknown) {
+      if (error?.response?.status === 401) {
         navigate('/signin');
       }
       throw error;
