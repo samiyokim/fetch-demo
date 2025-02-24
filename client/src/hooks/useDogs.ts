@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../utils/axios';
-import { Dog, SearchParams } from '../types/dogs';
+import { Dog, SearchParams } from '../utils/types';
 
 export const useDogs = () => {
   const [dogs, setDogs] = useState<Dog[]>([]);

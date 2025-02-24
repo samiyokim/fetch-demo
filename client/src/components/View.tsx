@@ -6,7 +6,7 @@ import Table from './Table';
 import Breeds from './Breeds';
 import DogImage from './DogImage';
 import { useDogs } from '../hooks/useDogs';
-import { Dog, SearchParams } from '../types/dogs';
+import { Dog, SearchParams } from '../utils/types';
 
 const View: React.FC = () => {
   const navigate = useNavigate();
