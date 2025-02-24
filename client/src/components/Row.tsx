@@ -1,9 +1,17 @@
 import React from 'react';
 import { Row, flexRender } from '@tanstack/react-table';
-import { Dog } from '../types/dog';
 
 interface RowProps {
   row: Row<Dog>;
+}
+
+interface Dog {
+  id: string;
+  img: string;
+  name: string;
+  age: number;
+  zip_code: string;
+  breed: string;
 }
 
 const TableRow: React.FC<RowProps> = ({ row }) => {
