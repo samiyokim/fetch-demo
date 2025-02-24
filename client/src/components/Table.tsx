@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   ColumnDef,
   flexRender,
@@ -10,6 +10,7 @@ import {
 } from '@tanstack/react-table';
 import DogImage from './DogImage';
 import TableRow from './Row';
+import { HeartFilledIcon } from '@radix-ui/react-icons';
 
 interface Dog {
   id: string;
@@ -26,8 +27,10 @@ interface TableProps {
   onSortingChange: (sorting: SortingState) => void;
   totalPages: number;
   onLoadMore: () => Promise<void>;
-  hasNextPage: boolean;
   isLoadingMore: boolean;
+  selectedBreed: string;
+  favorites: Set<string>;
+  onToggleFavorite: (dogId: string) => void;
 }
 
 const Table: React.FC<TableProps> = ({
@@ -36,8 +39,10 @@ const Table: React.FC<TableProps> = ({
   onSortingChange,
   totalPages,
   onLoadMore,
-  hasNextPage,
-  isLoadingMore
+  isLoadingMore,
+  selectedBreed,
+  favorites,
+  onToggleFavorite,
 }) => {
   const columns = React.useMemo<ColumnDef<Dog>[]>(
     () => [
@@ -66,8 +71,22 @@ const Table: React.FC<TableProps> = ({
         cell: info => <DogImage src={info.getValue() as string} alt="dog" />,
         enableSorting: false,
       },
+      {
+        id: 'favorite',
+        header: 'Favorite',
+        cell: info => (
+          <button
+            onClick={() => onToggleFavorite(info.row.original.id)}
+            className={`p-2 rounded-full hover:bg-gray-100 ${
+              favorites.has(info.row.original.id) ? 'text-red-500' : 'text-gray-400'
+            }`}
+          >
+            <HeartFilledIcon className="w-5 h-5" />
+          </button>
+        ),
+      },
     ],
-    []
+    [favorites]
   );
 
   const table = useReactTable({
@@ -80,7 +99,6 @@ const Table: React.FC<TableProps> = ({
     state: {
       sorting,
     },
-    // Prevent auto-reset of pagination state
     autoResetPageIndex: false,
   });
 
@@ -96,6 +114,10 @@ const Table: React.FC<TableProps> = ({
     }
     table.nextPage();
   }
+
+  useEffect(() => {
+    table.setPageIndex(0);
+  }, [table, selectedBreed]);
 
   return (
     <div className="mt-6">
