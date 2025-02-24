@@ -1,10 +1,12 @@
 # Demo
+https://github.com/user-attachments/assets/9a62957d-5943-4ef3-8d2d-f090ab0610db
+
 
 ## Steps to Run Locally
 
 ### Clone the Repository
-`git clone 
-[https://github.com/samiyokim/fetch-demo.git](https://github.com/samiyokim/fetch-demo.git)`
+`git clone https://github.com/samiyokim/fetch-demo.git` 
+[https://github.com/samiyokim/fetch-demo.git](https://github.com/samiyokim/fetch-demo.git)
 
 ## SETUP (Windows)
 1. open a new Terminal
