@@ -9,7 +9,7 @@ import {
 import TableRow from './Row';
 import TablePagination from './TablePagination';
 import { createColumns } from './columns';
-import { TableProps } from '../types/dog';
+import { TableProps } from '../utils/types';
 
 const Table: React.FC<TableProps> = ({
   data,

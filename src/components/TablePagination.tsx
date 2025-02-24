@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table } from '@tanstack/react-table';
-import { Dog } from '../types/dog';
+import { Dog } from '../utils/types';
 
 interface TablePaginationProps {
   table: Table<Dog>;

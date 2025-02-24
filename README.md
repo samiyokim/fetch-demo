@@ -1,3 +1,6 @@
+# Live Demo
+[https://samiyokim.github.io/fetch-demo/](https://samiyokim.github.io/fetch-demo/)
+
 # Demo
 https://github.com/user-attachments/assets/9a62957d-5943-4ef3-8d2d-f090ab0610db
 

@@ -1,5 +1,9 @@
 {
   "files": [],
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "strict": false
+    },
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }

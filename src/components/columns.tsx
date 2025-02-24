@@ -1,5 +1,5 @@
 import { ColumnDef } from '@tanstack/react-table';
-import { Dog } from '../types/dog';
+import { Dog } from '../utils/types';
 import DogImage from './DogImage';
 import { HeartFilledIcon } from '@radix-ui/react-icons';
 
