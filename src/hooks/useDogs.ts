@@ -12,13 +12,8 @@ export const useDogs = () => {
 
   const searchDogs = async (searchParams: SearchParams) => {
     try {
-      let searchResponse;
-      if (nextSearch) {
-        searchResponse = await api.get(nextSearch);
-      } else {
-        searchResponse = await api.get('/dogs/search', { params: searchParams });
-        setTotalPages(Math.ceil(searchResponse.data.total/10) || 0);
-      }
+      const searchResponse = await api.get('/dogs/search', { params: searchParams });
+      setTotalPages(Math.ceil(searchResponse.data.total/10) || 0);
       const resultIds = searchResponse.data.resultIds || [];
       setNextSearch(searchResponse.data.next || null);
 
@@ -40,7 +35,7 @@ export const useDogs = () => {
       } else {
         setDogs([]);
       }
-    } catch (error: unknown) {
+    } catch (error: any) {
       if (error?.response?.status === 401) {
         navigate('/signin');
       }

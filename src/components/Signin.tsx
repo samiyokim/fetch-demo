@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import api from '../utils/axios';
 
 const Banner = lazy(() => 
-  new Promise(resolve => {
+  new Promise<{ default: React.ComponentType }>(resolve => {
     const img = new Image();
     img.src = 'https://placedog.net/400x100'
     img.onload = () => resolve({ default: () => (

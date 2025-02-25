@@ -27,7 +27,7 @@ const View: React.FC = () => {
       try {
         const response = await api.get('/dogs/breeds');
         setAllBreeds(response.data);
-      } catch (error: unknown) {
+      } catch (error: any) {
         if (error?.response?.status === 401) {
           navigate('/signin');
         }
@@ -44,8 +44,8 @@ const View: React.FC = () => {
   }, [searchParams]);
 
   const handleBreedSelect = (breed: string) => {
-    setSearchParams(prev => ({
-      ...prev,
+    setSearchParams(() => ({
+      ...searchParams,
       breeds: [breed]
     }));
   };

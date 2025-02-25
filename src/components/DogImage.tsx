@@ -5,7 +5,7 @@ interface DogImageProps {
   alt: string;
 }
 
-const DogImage: React.FC<DogImageProps> = ({ src, alt }) => {
+const DogImage: React.FC<DogImageProps> = React.memo(({ src, alt }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -22,6 +22,7 @@ const DogImage: React.FC<DogImageProps> = ({ src, alt }) => {
         </div>
       ) : (
         <img
+          key={src} // Add key to force proper image loading state reset
           src={src}
           alt={alt}
           className={`w-full h-full object-cover rounded ${isLoading ? 'invisible' : 'visible'}`}
@@ -34,6 +35,8 @@ const DogImage: React.FC<DogImageProps> = ({ src, alt }) => {
       )}
     </div>
   );
-};
+});
+
+DogImage.displayName = 'DogImage';
 
 export default DogImage;

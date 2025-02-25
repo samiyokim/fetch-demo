@@ -1,4 +1,4 @@
-import { SortingState } from '@tanstack/react-table';
+import { OnChangeFn, SortingState } from '@tanstack/react-table';
 
 export interface SearchParams {
   breeds?: string[];
@@ -22,7 +22,7 @@ export interface Dog {
 export interface TableProps {
   data: Dog[];
   sorting: SortingState;
-  onSortingChange: (sorting: SortingState) => void;
+  onSortingChange: OnChangeFn<SortingState>;
   totalPages: number;
   onLoadMore: () => Promise<void>;
   isLoadingMore: boolean;

@@ -32,7 +32,7 @@ const SearchInput: React.FC<{
     <MagnifyingGlassIcon className="text-gray-400" />
     <Combobox
       value={value}
-      onChange={onChange}
+      onChange={(event) => onChange(event.target.value)}
       placeholder="Search breeds"
       className="w-full px-2 py-1 outline-none"
       onBlurCapture={(event) => {
