@@ -22,11 +22,15 @@ const View: React.FC = () => {
   const [matchResult, setMatchResult] = useState<Dog | null>(null);
 
   useEffect(() => {
-    fetchBreeds().finally(() => {setIsLoading(false)})
-  }, []);
+    if (fetchBreeds) {
+      fetchBreeds().catch(console.error).finally(() => setIsLoading(false));
+    }
+  }, [fetchBreeds]);
 
   useEffect(() => {
-    searchDogs(searchParams).catch(console.error);
+    if (searchDogs) {
+      searchDogs(searchParams).catch(console.error);
+    }
   }, [searchParams]);
 
   const handleBreedSelect = (breed: string) => {
@@ -74,7 +78,13 @@ const View: React.FC = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-indigo-600"></div>
+        <div 
+          role="status"
+          aria-label="Loading"
+          className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-indigo-600"
+        >
+          <span className="sr-only">Loading...</span>
+        </div>
       </div>
     );
   }

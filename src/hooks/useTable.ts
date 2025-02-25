@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../utils/axios';
 import { Dog, SearchParams } from '../utils/types';
@@ -44,7 +44,7 @@ export const useTable = () => {
     }
   };
 
-  const fetchBreeds = async () => {
+  const fetchBreeds = useMemo(() => async () => {
     try {
       const response = await api.get('/dogs/breeds');
       setAllBreeds(response.data);
@@ -53,7 +53,7 @@ export const useTable = () => {
         navigate('/signin');
       }
     }
-  };
+  }, [navigate]);
 
   const loadMore = async () => {
     if (!nextSearch || isLoadingMore) return;
