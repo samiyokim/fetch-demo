@@ -13,7 +13,7 @@ https://github.com/user-attachments/assets/9a62957d-5943-4ef3-8d2d-f090ab0610db
 
 ## SETUP (Windows)
 1. open a new Terminal
-2. `cd .\fetch-demo\client`
+2. `cd .\fetch-demo`
 3. `npm install`
 4. `npm run dev`
 
