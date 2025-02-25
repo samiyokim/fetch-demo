@@ -17,6 +17,19 @@ https://github.com/user-attachments/assets/9a62957d-5943-4ef3-8d2d-f090ab0610db
 3. `npm install`
 4. `npm run dev`
 
+
+## TEST
+```bash
+ ✓ src/components/__tests__/View.test.tsx (1 test) 165ms
+   ✓ View Component > renders logout button after loading
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  21:18:17
+   Duration  981ms
+```
+
+## TECH
 ---
 | Technology     | Notes                         |
 |----------------|-------------------------------|
