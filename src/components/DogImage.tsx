@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface DogImageProps {
   src: string;
@@ -6,8 +6,12 @@ interface DogImageProps {
 }
 
 const DogImage: React.FC<DogImageProps> = React.memo(({ src, alt }) => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+  }, [src]);
 
   return (
     <div className="relative w-12 h-12">
@@ -22,7 +26,6 @@ const DogImage: React.FC<DogImageProps> = React.memo(({ src, alt }) => {
         </div>
       ) : (
         <img
-          key={src} // Add key to force proper image loading state reset
           src={src}
           alt={alt}
           className={`w-full h-full object-cover rounded ${isLoading ? 'invisible' : 'visible'}`}

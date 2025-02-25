@@ -5,13 +5,12 @@ import api from '../utils/axios';
 import Table from './Table';
 import Breeds from './Breeds';
 import DogImage from './DogImage';
-import { useDogs } from '../hooks/useDogs';
+import { useTable } from '../hooks/useTable';
 import { Dog, SearchParams } from '../utils/types';
 
 const View: React.FC = () => {
   const navigate = useNavigate();
-  const { dogs, totalPages, isLoadingMore, searchDogs, loadMore } = useDogs();
-  const [allBreeds, setAllBreeds] = useState<string[]>([]);
+  const { dogs, allBreeds, totalPages, isLoadingMore, searchDogs, fetchBreeds, loadMore } = useTable();
   const [isLoading, setIsLoading] = useState(true);
   const [searchParams, setSearchParams] = useState<SearchParams>({
     breeds: [],
@@ -23,21 +22,8 @@ const View: React.FC = () => {
   const [matchResult, setMatchResult] = useState<Dog | null>(null);
 
   useEffect(() => {
-    const fetchBreeds = async () => {
-      try {
-        const response = await api.get('/dogs/breeds');
-        setAllBreeds(response.data);
-      } catch (error: any) {
-        if (error?.response?.status === 401) {
-          navigate('/signin');
-        }
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchBreeds();
-  }, [navigate]);
+    fetchBreeds().finally(() => {setIsLoading(false)})
+  }, []);
 
   useEffect(() => {
     searchDogs(searchParams).catch(console.error);

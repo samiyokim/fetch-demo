@@ -4,7 +4,7 @@ import View from './components/View'
 
 function App() {
   return (
-    <Router>
+    <Router basename="/fetch-demo/">
       <Routes>
         <Route path="/signin" element={<Signin />} />
         <Route path="/view" element={<View />} />

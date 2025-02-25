@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import api from '../utils/axios';
 import { Dog, SearchParams } from '../utils/types';
 
-export const useDogs = () => {
+export const useTable = () => {
   const [dogs, setDogs] = useState<Dog[]>([]);
+  const [allBreeds, setAllBreeds] = useState<string[]>([]);
   const [nextSearch, setNextSearch] = useState<string | null>(null);
   const [totalPages, setTotalPages] = useState(0);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
@@ -43,6 +44,17 @@ export const useDogs = () => {
     }
   };
 
+  const fetchBreeds = async () => {
+    try {
+      const response = await api.get('/dogs/breeds');
+      setAllBreeds(response.data);
+    } catch (error: any) {
+      if (error?.response?.status === 401) {
+        navigate('/signin');
+      }
+    }
+  };
+
   const loadMore = async () => {
     if (!nextSearch || isLoadingMore) return;
     setIsLoadingMore(true);
@@ -62,9 +74,11 @@ export const useDogs = () => {
 
   return {
     dogs,
+    allBreeds,
     totalPages,
     isLoadingMore,
     searchDogs,
+    fetchBreeds,
     loadMore
   };
 };
