@@ -1,4 +1,4 @@
-import { describe, it, vi, beforeEach } from 'vitest';
+import { describe, it, vi, beforeEach, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import View from '../View';
@@ -35,14 +35,8 @@ describe('View Component', () => {
         <View />
       </BrowserRouter>
     );
-
-    // First, verify loading state
-    // const loadingElement = screen.getByLabelText('Loading');
-    // expect(loadingElement).toBeInTheDocument();
-
     // Then wait for content to load
     const logout = await screen.findByText('Logout');
-    // expect(breedSelector).toBeInTheDocument();
     expect(logout).toBeInTheDocument();
   });
 });
